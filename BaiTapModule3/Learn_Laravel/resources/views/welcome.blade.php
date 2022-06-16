@@ -1,0 +1,1 @@
+<a href="{{route('alo.blo', ['id' => 2])}}">blo</a>
