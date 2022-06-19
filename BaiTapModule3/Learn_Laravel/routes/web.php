@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Whoops\Run;
-
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TesttControler;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,17 +16,11 @@ use Whoops\Run;
 |
 */
 
-Route::get('/bla/{id?}/bal/{idd?}', function ($id = 0, $idd = 0){
-    return $id.$idd;
-});
 Route::get('/', function(){
     return view('welcome');
 });
-Route::prefix('/alo')->group(function(){
-    Route::get('/bla', function(){
-        return 'daylabla';
-    });
-    Route::get('/blo/{id}', function($id){
-        return $id;
-    })->name('alo.blo');
-});
+
+Route::resource('admin', UserController::class);
+
+Route::get('test/{id_test?}/show/{id_show?}',[TestController::class, 'show']);
+Route::resource('/testt', TesttControler::class);
