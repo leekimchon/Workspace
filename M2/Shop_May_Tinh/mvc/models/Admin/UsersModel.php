@@ -2,7 +2,8 @@
 class UsersModel extends DB{
     function count_users(){
         $sql = "SELECT COUNT(id) FROM users WHERE display = 1";
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $result = $stmt->fetch();
         $result = $result["COUNT(id)"];
         return $result;
@@ -20,7 +21,8 @@ class UsersModel extends DB{
             WHERE users.full_name LIKE '%$key_search%' AND users.display = 1 ORDER BY users.full_name ASC LIMIT $start, $limit";
         }
 
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $result = $stmt->fetchAll();
         return $result;
@@ -31,7 +33,8 @@ class UsersModel extends DB{
         JOIN roles
         ON users.role_id  = roles.id 
         WHERE users.display = 0 ORDER BY users.full_name ASC";
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $result = $stmt->fetchAll();
         return $result;
@@ -39,11 +42,13 @@ class UsersModel extends DB{
 
     function un_delete_user($id_user){
         $sql = "UPDATE users SET display = 1 WHERE id = $id_user";
-        $this->conn->exec($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
     function delete_user($id_user){
         $sql = "UPDATE users SET display = 0 WHERE id = $id_user";
-        $this->conn->exec($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
 
     function show_user_old($id_user){
@@ -51,21 +56,24 @@ class UsersModel extends DB{
         JOIN roles
         ON users.role_id  = roles.id 
         WHERE users.id = $id_user ";
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $result = $stmt->fetch();
         return $result;
     }
     function show_full_roles(){
         $sql = "SELECT * FROM roles WHERE display = 1 ORDER BY name ASC";
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $result = $stmt->fetchAll();
         return $result;
     }
     function check_email_user_update($email){
         $sql = "SELECT * FROM users WHERE email = '$email' AND display = 1";
-        $stmt = $this->conn->query($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $result = $stmt->fetch();
         return $result;
@@ -79,7 +87,8 @@ class UsersModel extends DB{
             address = '$update_address_user', 
             role_id = $update_role_id_user 
             WHERE id = $id_user";
-        $this->conn->exec($sql);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
 }
 ?>
