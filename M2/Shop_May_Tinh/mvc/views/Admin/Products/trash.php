@@ -61,7 +61,7 @@ extract($data);
                     <td><?= $trash[$i]->gia_goc ;?></td>
                     <td><?= $trash[$i]->gia_ban ;?></td>
                     <td><?= $trash[$i]->bao_hanh_xuat_xu ;?></td>
-                    <td><?= $trash[$i]->anh ;?></td>   
+                    <td><img src="mvc/images/products/<?= $products[$i]->anh ;?>" class="img_products_admin"></td>
                     <td><?= $trash[$i]->ngay_tao ;?></td>   
                     <td><?= $trash[$i]->ngay_sua  ;?></td>   
                     <td><?= $trash[$i]->name_categories ;?></td>

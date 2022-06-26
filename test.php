@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <form method="post" action="" enctype="multipart/form-data">
-            <input type="file" name="avatar"/>
-            <input type="submit" name="uploadclick" value="Upload"/>
-        </form>
-        <?php
-            // Xử Lý Upload
-            echo "<pre>";   
-            var_dump($_FILES);
-        ?>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uplaod file</title>
+</head>
+<body>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        chọn file
+        <input type="file" name="file_upload">
+        <input type="submit" name="submit" value="submit">
+    </form>
+</body>
 </html>

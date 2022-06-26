@@ -1,38 +1,24 @@
+<?php
+// echo "<pre>";
+// print_r($_FILES);die;
+// move_uploaded_file($_FILES['file_upload']['tmp_name'], 'upload/'.$_FILES['file_upload']['name']);
+$folder_path = 'upload/';
+$file_path = $folder_path.$_FILES['file_upload']['name'];
+$flag_ok = true;
+$file_type = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
+if($file_type != 'jpg' && $file_type != 'png' && $file_type != 'jpeg' && $file_type != 'gif'){
+    $flag_ok = false;
+}
+?>
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title></title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-  <form method="post" action="" enctype="multipart/form-data">
-    <input type="file" name="avatar" />
-    <input type="submit" name="uploadclick" value="Upload" />
-  </form>
-  <?php // Xử Lý Upload
-
-  // Nếu người dùng click Upload
-  if (isset($_POST['uploadclick'])) {
-    // Nếu người dùng có chọn file để upload
-    if (isset($_FILES['avatar'])) {
-      // Nếu file upload không bị lỗi,
-      // Tức là thuộc tính error > 0
-      if ($_FILES['avatar']['error'] > 0) {
-        echo 'File Upload Bị Lỗi';
-      } else {
-        // Upload file
-        echo "<pre>";
-        var_dump($_FILES);die;
-        move_uploaded_file($_FILES['avatar']['tmp_name'], './folder/' . $_FILES['avatar']['name']);
-        echo 'File Uploaded';
-      }
-    } else {
-      echo 'Bạn chưa chọn file upload';
-    }
-  }
-  ?>
+    <img src="<?php if(isset($file_path)){echo $file_path;}?>" alt="">
 </body>
-
 </html>

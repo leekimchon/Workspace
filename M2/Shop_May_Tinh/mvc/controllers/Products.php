@@ -49,11 +49,13 @@ class Products extends Controller{
         $err = [];
         $data_add = [];
         if(isset($_POST["add"])){
+            // echo "<pre>";
+            // print_r($_FILES);die;
             $name_add = trim($_POST["name_add"]);
             $add_gia_goc = trim($_POST["add_gia_goc"]);
             $add_gia_ban = trim($_POST["add_gia_ban"]);
             $add_bao_hanh_xuat_xu = trim($_POST["add_bao_hanh_xuat_xu"]);
-            $add_link_anh = trim($_POST["add_link_anh"]);
+            $add_link_anh = $_FILES['add_link_anh']['name'];
             $add_id_category = trim($_POST["add_id_category"]);
             $data_add = [
                 "name_add" => $name_add,
@@ -76,12 +78,13 @@ class Products extends Controller{
                 $err["add_bao_hanh_xuat_xu_errr"] = "Bảo hành xuất xứ không được để trống";
             }
             if(empty($add_link_anh)){
-                $err["add_link_anh_errr"] = "Link ảnh không được để trống";
+                $err["add_link_anh_errr"] = "Ảnh không được để trống";
             }
             if(!empty($this->model("Admin/ProductsModel")->check_add_Products($name_add))){
                 $err["name_add_err"] = "Tên sản phẩm đã tồn tại";
             }
             if(empty($err)){
+                move_uploaded_file($_FILES['add_link_anh']['tmp_name'], 'mvc/images/products/'.$_FILES['add_link_anh']['name']);
                 $_SESSION['flash_message'] = "Đã thêm $name_add";
                 $this->model("Admin/ProductsModel")->add_products($data_add);           
                 header('location: index.php?url=products/index');
@@ -106,7 +109,7 @@ class Products extends Controller{
             $update_gia_goc = trim($_POST["update_gia_goc"]);
             $update_gia_ban = trim($_POST["update_gia_ban"]);
             $update_bao_hanh_xuat_xu = trim($_POST["update_bao_hanh_xuat_xu"]);
-            $update_link_anh = trim($_POST["update_link_anh"]);
+            $update_link_anh = $_FILES['update_link_anh']['name'];
             $update_id_category = trim($_POST["update_id_category"]);
             $data_update_products = [
                 "id_products" => $id_products,
@@ -139,6 +142,7 @@ class Products extends Controller{
             //     }
             // }
             if(empty($err)){
+                move_uploaded_file($_FILES['update_link_anh']['tmp_name'], 'mvc/images/products/'.$_FILES['update_link_anh']['name']);
                 $this->model("Admin/ProductsModel")->update_products($data_update_products);
                 header("location: index.php?url=products/index");
             }
