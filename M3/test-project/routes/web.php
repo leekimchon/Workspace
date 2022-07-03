@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +14,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', function(){
-    return "<h1>Home</h1>";
-})->name('home');
-Route::get('/product', [ProductController::class, 'index'])->middleware('auth.admin');
+Route::group(['prefix' => 'customers'], function () {
+    Route::get('/',[\App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
+});
+Route::get('/', [CustomerController::class, 'index']);
