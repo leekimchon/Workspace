@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,4 @@ Route::group(['prefix' => 'customers'], function () {
     Route::get('/',[\App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
 });
 Route::get('/', [CustomerController::class, 'index']);
+Route::get('/category', [CategoryController::class, 'index'])->name("category.index");
