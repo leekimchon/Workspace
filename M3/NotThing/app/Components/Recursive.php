@@ -7,6 +7,6 @@ class Recursive {
     function __construct() {
     }
 
-    function recursiveCategory($id, $text) {
+    function recursiveCategory($id, $text = '') {
     }
 }

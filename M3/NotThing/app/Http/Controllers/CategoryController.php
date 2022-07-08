@@ -11,19 +11,19 @@ class CategoryController extends Controller {
     public function index() {
         return view('category.index');
     }
-    function recursive($id, $text) {
+    function recursive($id = 0, $text = '') {
         $data = Category::all();
-        for ($i = 0; $i < count($data); $i++) {
-            if ($data[$i]['parent_id'] == $id) {
-                $id = $data[$i]['parent_id'];
-                $name = $text . $data[$i]['name'];
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $id) {
+                $id = $value['parent_id'];
+                $name = $value['name'];
                 $this->result .= "<option value=" . $id . "> $text$name </option>";
-                $this->recursive($data[$i]['id'], $text . '&nbsp&nbsp&nbsp');
+                $this->recursive($value['id'], $text . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp');
             }
         }
         return $this->result;
     }
     public function create() {
-        return view('category.add', ['option' => $this->recursive(0, '')]);
+        return view('category.add', ['option' => $this->recursive()]);
     }
 }
