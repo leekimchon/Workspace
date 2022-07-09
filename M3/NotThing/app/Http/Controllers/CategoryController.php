@@ -14,9 +14,13 @@ class CategoryController extends Controller {
     public function create() {
         $data = Category::all();
         $option  = Recursive::recursiveCategory( $data );
-        return view('category.add', ['option' => $option]);
+        return view( 'category.add', ['option' => $option] );
     }
     public function store( Request $request ){
+        $request->validate([
+            'name' => 'required',
+            'parent_id' => 'required'
+        ]);
         Category::create( $request->all() );
         return redirect()->route('categories.index');
     }
