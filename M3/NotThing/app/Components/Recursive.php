@@ -3,10 +3,17 @@
 namespace App\Components;
 
 class Recursive {
-    private $result = '';
-    function __construct() {
-    }
-
-    function recursiveCategory($id, $text = '') {
+    static private $result = '';
+    
+    static function recursiveCategory($data, $id = 0, $text = '') {
+        foreach ($data as $value) {
+            if ($value['parent_id'] == $id) {
+                $id = $value['parent_id'];
+                $name = $value['name'];
+                Recursive::$result .= "<option value=" . $id . "> $text$name </option>";
+                Recursive::recursiveCategory($data, $value['id'], $text . '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp');
+            }
+        }
+        return Recursive::$result;
     }
 }

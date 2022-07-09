@@ -24,6 +24,8 @@ class CategoryController extends Controller {
         return $this->result;
     }
     public function create() {
-        return view('category.add', ['option' => $this->recursive()]);
+        $data = Category::all();
+        $option  = Recursive::recursiveCategory($data);
+        return view('category.add', ['option' => $option]);
     }
 }
