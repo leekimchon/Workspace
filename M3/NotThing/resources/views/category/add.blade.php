@@ -14,14 +14,15 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
-                <form>
+                <form action="{{ route('categories.store') }} " method="POST">
+                  @csrf
                     <div class="form-group">
-                      <label for="name_category">Tên danh mục</label>
-                      <input type="email" class="form-control" id="name_category" placeholder="nhập tên danh mục">
+                      <label for="name">Tên danh mục</label>
+                      <input name="name" type="text" class="form-control" id="name" placeholder="nhập tên danh mục">
                     </div>
                     <div class="form-group">
-                        <label for="category_parent">Chọn danh mục cha</label>
-                        <select class="form-control" id="category_parent">
+                        <label for="parent_id">Chọn danh mục cha</label>
+                        <select name="parent_id" class="form-control" id="parent_id">
                             <option value="0">Chọn danh mục cha</option>
                             {!! $option !!}
                           </select>
