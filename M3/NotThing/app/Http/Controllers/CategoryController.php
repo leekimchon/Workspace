@@ -26,7 +26,21 @@ class CategoryController extends Controller {
         return redirect()->route('categories.index');
     }
     public function edit($id){
-
+        $category = Category::find( $id );
+        $categories = Category::all();
+        $option  = Recursive::recursiveCategory( $categories, $category->parent_id );
+        $data = [
+            'category' => $category,
+            'option' => $option
+        ];
+        return view( 'category.edit', $data );
+    }
+    public function update($id, Request $request){
+        Category::find($id)->update([ 
+            'name' => $request->name,
+            'parent_id' => $request->parent_id
+        ]);
+        return redirect()->route('categories.index');
     }
     public function delete($id){
         
