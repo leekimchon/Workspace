@@ -1,15 +1,11 @@
 @extends('layouts.admin')
 @section('title')
-<title>Trang chủ</title>
+<title>Thêm danh mục</title>
 @endsection
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       @include('partials.admin.content-header', ['name' => 'Category', 'key' => 'Add'])
-      <!-- /.content-header -->
-
-      <!-- Main content -->
+      
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -31,10 +27,8 @@
                   </form>
             </div>
           </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
       </div>
-      <!-- /.content -->
+      
     </div>
-    <!-- /.content-wrapper -->
 @endsection

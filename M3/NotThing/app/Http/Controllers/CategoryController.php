@@ -9,7 +9,8 @@ use App\Components\Recursive;
 class CategoryController extends Controller {
     public $result = '';
     public function index() {
-        return view('category.index');
+        $categories = Category::latest()->paginate(5);
+        return view('category.index', ['categories' => $categories] );
     }
     public function create() {
         $data = Category::all();
@@ -23,5 +24,11 @@ class CategoryController extends Controller {
         ]);
         Category::create( $request->all() );
         return redirect()->route('categories.index');
+    }
+    public function edit($id){
+
+    }
+    public function delete($id){
+        
     }
 }
