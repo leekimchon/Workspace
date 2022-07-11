@@ -9,7 +9,7 @@ use App\Components\Recursive;
 class CategoryController extends Controller {
     public $result = '';
     public function index() {
-        $categories = Category::latest()->paginate(5);
+        $categories = Category::latest()->paginate(10);
         return view('category.index', ['categories' => $categories] );
     }
     public function create() {
@@ -36,6 +36,10 @@ class CategoryController extends Controller {
         return view( 'category.edit', $data );
     }
     public function update($id, Request $request){
+        $request->validate([
+            'name' => 'required',
+            'parent_id' => 'required'
+        ]);
         Category::find($id)->update([ 
             'name' => $request->name,
             'parent_id' => $request->parent_id
