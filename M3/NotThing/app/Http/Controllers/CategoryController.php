@@ -8,14 +8,16 @@ use App\Components\Recursive;
 
 class CategoryController extends Controller {
     public $result = '';
+
     public function index() {
-        $categories = Category::latest()->paginate(10);
-        return view('category.index', ['categories' => $categories] );
+        $categories = Category::latest()->paginate(5);
+        return view('admin.category.index', ['categories' => $categories] );
     }
     public function create() {
-        $data = Category::all();
-        $option  = Recursive::recursiveCategory( $data );
-        return view( 'category.add', ['option' => $option] );
+        $categories = Category::all();
+        $option  = Recursive::recursiveCategory( $categories 
+     );
+        return view( 'admin.category.add', ['option' => $option] );
     }
     public function store( Request $request ){
         $request->validate([
@@ -33,7 +35,7 @@ class CategoryController extends Controller {
             'category' => $category,
             'option' => $option
         ];
-        return view( 'category.edit', $data );
+        return view( 'admin.category.edit', $data );
     }
     public function update($id, Request $request){
         $request->validate([

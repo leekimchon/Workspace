@@ -2,6 +2,12 @@
 @section('title')
 <title>Trang chủ</title>
 @endsection
+
+@section('css')
+    <link href="{{ asset('vendors\slelect2\select2.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('admins\category\index\index.css') }}">
+@endsection
+
 @section('content')
     <div class="content-wrapper">
       @include('partials.admin.content-header', ['name' => 'Category', 'key' => 'List'])
