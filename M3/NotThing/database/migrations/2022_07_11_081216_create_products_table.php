@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('price');
             $table->string('discount_price');
-            $table->string('feature_image_name');
             $table->string('feature_image_path');
             $table->integer('category_id');
             $table->timestamps();

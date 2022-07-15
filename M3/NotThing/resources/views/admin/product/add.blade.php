@@ -35,15 +35,14 @@
                       </div>
                       <div class="form-group">
                         <label for="detail_image_path">Ảnh phụ</label>
-                        <input name="detail_image_path" type="file" multiple class="form-control-file" id="detail_image_path">
+                        <input name="detail_image_path[]" type="file" multiple class="form-control-file" id="detail_image_path">
                       </div>
                     <div class="form-group">
-                        <label for="parent_id">Chọn danh Sản phẩm</label>
-                        <select name="parent_id" class="form-control select2_init" id="parent_id">
+                        <label for="category_id">Chọn danh Sản phẩm</label>
+                        <select name="category_id" class="form-control select2_init" id="category_id">
                             {!! $option !!}
                           </select>
                       </div>
-                      {{-- <img src="{{ asset($product[14]->feature_image_path) }}" alt=""> --}}
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
@@ -56,7 +55,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('vendors\slelect2\select2.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendors\slelect2\select2.min.js') }}"></script>
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script src="{{ asset('admins\product\add\add.js') }}"></script>
+    <script src="{{ asset('admins\product\add\add.js') }}"></script> --}}
 @endsection

@@ -26,25 +26,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @foreach ($categories as $category) --}}
+                  @foreach ($products as $product)
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td> {{ $product->id }} </td>
+                        <td> {{ $product->name }} </td>
+                        <td> {{ $product->price }} </td>
+                        <td> {{ $product->discount_price }} </td>
+                        <td> <img src="{{ asset($product->feature_image_path) }}" alt=""> </td>
+                        <td> {{ $product->category_id }} </td>
                         <td>
                             <a href="" class="btn btn-primary">Sửa</a>
                             <a href="" class="btn btn-danger">Xóa</a>
                         </td>
                       </tr>
-                  {{-- @endforeach --}}
+                  @endforeach
                 </tbody>
               </table>
             </div>
             <div class="col-md-12">
-              {{-- {{ $categories->links() }} --}}
+              {{ $products->links() }}
             </div>
           </div>
         </div>

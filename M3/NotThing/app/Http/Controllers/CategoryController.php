@@ -15,8 +15,7 @@ class CategoryController extends Controller {
     }
     public function create() {
         $categories = Category::all();
-        $option  = Recursive::recursiveCategory( $categories 
-     );
+        $option  = Recursive::recursiveCategory( $categories );
         return view( 'admin.category.add', ['option' => $option] );
     }
     public function store( Request $request ){
