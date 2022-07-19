@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Components\Recursive;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller {
     public $result = '';
@@ -18,11 +20,7 @@ class CategoryController extends Controller {
         $option  = Recursive::recursiveCategory( $categories );
         return view( 'admin.category.add', ['option' => $option] );
     }
-    public function store( Request $request ){
-        $request->validate([
-            'name' => 'required',
-            'parent_id' => 'required'
-        ]);
+    public function store( CategoryRequest $request ){
         Category::create( $request->all() );
         return redirect()->route('categories.index');
     }
@@ -36,7 +34,7 @@ class CategoryController extends Controller {
         ];
         return view( 'admin.category.edit', $data );
     }
-    public function update($id, Request $request){
+    public function update($id, CategoryRequest $request){
         $request->validate([
             'name' => 'required',
             'parent_id' => 'required'

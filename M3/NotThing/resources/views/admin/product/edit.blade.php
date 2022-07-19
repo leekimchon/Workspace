@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-<title>Thêm sản phẩm</title>
+<title>Sửa sản phẩm</title>
 @endsection
 
 @section('css')
@@ -10,43 +10,31 @@
 @section('content')
     <div class="content-wrapper">
       @include('includes.admin.content-header', ['name' => 'Product', 'key' => 'Add'])
-      <div>
-        @if (Session::has('error'))
-            <p>
-              {{ Session::get('error') }}
-            </p>
-        @endif
-      </div>
       <div class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
-                <form action="{{ route('product.store') }} " method="POST" enctype="multipart/form-data">
+                 <form action="{{ route('product.update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data"> 
                   @csrf
                     <div class="form-group">
                       <label for="name">Tên sản phẩm</label>
-                      <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="name" placeholder="nhập tên sản phẩm">
-                      <span class="text-danger">{{ $errors->first('name') }}</span>
+                      <input name="name" value="{{ $product->name }}" type="text" class="form-control" id="name" placeholder="nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="price">Giá gốc</label>
-                        <input name="price" value="{{ old('price') }}" type="text" class="form-control" id="price" placeholder="nhập tên giá gốc">
-                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                        <input name="price" value="{{ $product->price }}" type="text" class="form-control" id="price" placeholder="nhập tên giá gốc">
                       </div>
                       <div class="form-group">
                         <label for="discount_price">Giá bán</label>
-                        <input name="discount_price" value="{{ old('discount_price') }}" type="text" class="form-control" id="discount_price" placeholder="nhập giá bán">
-                        <span class="text-danger">{{ $errors->first('discount_price') }}</span>
+                        <input name="discount_price" value="{{ $product->discount_price }}" type="text" class="form-control" id="discount_price" placeholder="nhập giá bán">
                       </div>
                       <div class="form-group">
                         <label for="feature_image_path">Ảnh chính</label>
                         <input name="feature_image_path" type="file" class="form-control-file" id="feature_image_path">
-                        <span class="text-danger">{{ $errors->first('feature_image_path') }}</span>
                       </div>
                       <div class="form-group">
                         <label for="detail_image_path">Ảnh phụ</label>
                         <input name="detail_image_path[]" type="file" multiple class="form-control-file" id="detail_image_path">
-                        <span class="text-danger">{{ $errors->first('detail_image_path') }}</span>
                       </div>
                     <div class="form-group">
                         <label for="category_id">Chọn danh Sản phẩm</label>

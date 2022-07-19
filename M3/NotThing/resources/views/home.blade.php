@@ -6,7 +6,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      @include('partials.admin.content-header', ['name' => 'Home', 'key' => 'Home'])
+      @include('includes.admin.content-header', ['name' => 'Home', 'key' => 'Home'])
       <!-- /.content-header -->
 
       <!-- Main content -->

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="content-wrapper">
-      @include('partials.admin.content-header', ['name' => 'Category', 'key' => 'Add'])
+      @include('includes.admin.content-header', ['name' => 'Category', 'key' => 'Add'])
       
       <div class="content">
         <div class="container-fluid">
@@ -14,7 +14,8 @@
                   @csrf
                     <div class="form-group">
                       <label for="name">Tên danh mục</label>
-                      <input name="name" value="{{ $category->name }}" type="text" class="form-control" id="name" placeholder="nhập tên danh mục">
+                      <input name="name" value="{{ old('name') ?? $category->name }}" type="text" class="form-control" id="name" placeholder="nhập tên danh mục">
+                      <span class="text-danger">{{ $errors->first('name') }}</span>
                     </div>
                     <div class="form-group">
                         <label for="parent_id">Chọn danh mục cha</label>

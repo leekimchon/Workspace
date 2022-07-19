@@ -22,13 +22,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
-        @include('partials.admin.header')
+        @include('includes.admin.header')
 
-        @include('partials.admin.sidebar')
+        @include('includes.admin.sidebar')
 
         @yield('content')
 
-        @include('partials.admin.footer')
+        @include('includes.admin.footer')
     </div>
     <!-- ./wrapper -->
 

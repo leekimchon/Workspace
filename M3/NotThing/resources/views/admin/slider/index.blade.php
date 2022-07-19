@@ -15,41 +15,35 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <a href="{{ route('product.create') }}" class="btn btn-primary float-right m-2">Add</a>
+              <a href="{{ route('slider.create') }}" class="btn btn-primary float-right m-2">Add</a>
             </div>
             <div class="col-md-12">
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Giá Gốc</th>
-                    <th scope="col">Giá bán</th>
+                    <th scope="col">Link_load</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col">Danh mục</th>
                     <th scope="col">Tùy chọn</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($products as $product)
+                  {{-- @foreach ($products as $product) --}}
                       <tr>
-                        <td> {{ $product->id }} </td>
-                        <td> {{ $product->name }} </td>
-                        <td> {{ $product->price }} </td>
-                        <td> {{ $product->discount_price }} </td>
-                        <td> <img class="image_product" src="{{ asset($product->feature_image_path) }}" alt=""> </td>
-                        <td> {{ $product->category->name }} </td>
+                        <td> fg </td>
+                        <td> d </td>
+                        <td> df </td>
                         <td>
-                          <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-primary">Sửa</a>
-                          <a href="{{ route('product.delete', ['id' => $product->id]) }}" data-url="{{ route('product.delete', ['id' => $product->id]) }}" class="btn btn-danger ajax_delete">Xóa</a>
+                          <a href="{{-- route('product.edit', ['id' => $product->id]) --}}" class="btn btn-primary">Sửa</a>
+                          <a href="{{-- route('product.delete', ['id' => $product->id]) --}}" data-url="{{-- route('product.delete', ['id' => $product->id]) --}}" class="btn btn-danger ajax_delete">Xóa</a>
                         </td>
                       </tr>
-                  @endforeach
+                  {{-- @endforeach --}}
                 </tbody>
               </table>
             </div>
             <div class="col-md-12">
-              {{ $products->links() }}
+              {{-- {{ $products->links() }} --}}
             </div>
           </div>
         </div>
