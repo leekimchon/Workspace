@@ -28,22 +28,24 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @foreach ($products as $product) --}}
+                  @foreach ($sliders as $slider)
                       <tr>
-                        <td> fg </td>
-                        <td> d </td>
-                        <td> df </td>
+                        <td> {{ $slider->id }} </td>
+                        <td> {{ $slider->link_load }} </td>
+                        <td> 
+                          <img style="height: 50px;" src="{{ asset($slider->image) }}" alt="">
+                        </td>
                         <td>
                           <a href="{{-- route('product.edit', ['id' => $product->id]) --}}" class="btn btn-primary">Sửa</a>
                           <a href="{{-- route('product.delete', ['id' => $product->id]) --}}" data-url="{{-- route('product.delete', ['id' => $product->id]) --}}" class="btn btn-danger ajax_delete">Xóa</a>
                         </td>
                       </tr>
-                  {{-- @endforeach --}}
+                  @endforeach
                 </tbody>
               </table>
             </div>
             <div class="col-md-12">
-              {{-- {{ $products->links() }} --}}
+              {{ $sliders->links() }}
             </div>
           </div>
         </div>

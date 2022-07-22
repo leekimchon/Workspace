@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
-                <form action="{{ route('slider.store') }} " method="POST">
+                <form action="{{ route('slider.store') }} " method="POST" enctype="multipart/form-data">
                   @csrf
                     <div class="form-group">
                       <label for="link_load">Link_load</label>
@@ -18,8 +18,10 @@
                       <span class="text-danger">{{ $errors->first('link_load') }}</span>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="image" id="">
-                      </div>
+                      <label for="image">Ảnh</label>
+                      <input name="image" type="file" class="form-control-file" id="image">
+                      <span class="text-danger">{{ $errors->first('image') }}</span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
