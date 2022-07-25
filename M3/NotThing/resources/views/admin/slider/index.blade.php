@@ -28,19 +28,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($sliders as $slider)
+                  @if($sliders->count())
+                      @foreach ($sliders as $slider)
+                          <tr>
+                            <td> {{ $slider->id }} </td>
+                            <td> {{ $slider->link_load }} </td>
+                            <td> 
+                              <img style="height: 50px;" src="{{ asset($slider->image) }}" alt="">
+                            </td>
+                            <td>
+                              <a href="{{ route('slider.edit', ['id' => $slider->id]) }}" class="btn btn-primary">Sửa</a>
+                              <a href="{{ route('slider.delete', ['id' => $slider->id]) }}"
+                                  data-url="{{ route('slider.delete', ['id' => $slider->id]) }}"
+                                  class="btn btn-danger ajax_delete">
+                                  Xóa
+                              </a>
+                            </td>
+                          </tr>
+                      @endforeach
+                  @else
                       <tr>
-                        <td> {{ $slider->id }} </td>
-                        <td> {{ $slider->link_load }} </td>
-                        <td> 
-                          <img style="height: 50px;" src="{{ asset($slider->image) }}" alt="">
-                        </td>
-                        <td>
-                          <a href="{{-- route('product.edit', ['id' => $product->id]) --}}" class="btn btn-primary">Sửa</a>
-                          <a href="{{-- route('product.delete', ['id' => $product->id]) --}}" data-url="{{-- route('product.delete', ['id' => $product->id]) --}}" class="btn btn-danger ajax_delete">Xóa</a>
-                        </td>
+                          <th colspan="4" class="text-center">Empty</th>
                       </tr>
-                  @endforeach
+                  @endif
                 </tbody>
               </table>
             </div>

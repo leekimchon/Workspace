@@ -27,5 +27,28 @@ class SliderController extends Controller {
         $slider = Slider::create($data_create);
         return redirect()->route('slider.index');
     }
-
+    function edit($id){
+        $slider = Slider::where('id', $id)->first();
+        $params = [
+            'slider' => $slider
+        ];
+        return view('admin.slider.edit', $params);
+    }
+    function update($id, Request $request){
+        $file_image = $request->file('image');
+        $path_image = 'storage/'.$file_image->store('images/slider', 'public');
+        $slider = Slider::where('id', $id)->first();
+        $slider->update([
+            'link_load' => $request->link_load, 
+            'image' => $path_image
+        ]);
+        return redirect()->route('slider.index');
+    }
+    function delete($id){
+        $slider = Slider::where('id', $id)->delete();
+        return response()->json([
+            'code' => 200,
+            'message' => 'success'
+        ], status: 200);
+    }
 }

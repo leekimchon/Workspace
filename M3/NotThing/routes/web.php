@@ -47,4 +47,4 @@ Route::prefix('admin')->group(function(){
         Route::post('/update{id}', [SliderController::class, 'update'])->name('slider.update');
         Route::get('/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
     });
-});
+}); 

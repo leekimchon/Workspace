@@ -25,7 +25,7 @@
                   @csrf
                     <div class="form-group">
                       <label for="name">Tên sản phẩm</label>
-                      <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="name" placeholder="nhập tên sản phẩm">
+                      <input name="name" value="{{ old('name') }}" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="nhập tên sản phẩm">
                       <span class="text-danger">{{ $errors->first('name') }}</span>
                     </div>
                     <div class="form-group">
